@@ -1,0 +1,75 @@
+﻿@model ShopHoa.Models.Hoa
+
+@{
+    ViewBag.Title = "Delete_SP";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<style>
+    .detail span {
+        font-weight: 700;
+    }
+</style>
+<div class="container">
+    <h2>Bạn có Chắc chắn muốn xóa?</h2>
+
+    <div class="row detail">
+        <hr />
+        <div class="col-3">
+            <p>
+                <span>Tên Hoa: </span>
+                @Html.DisplayFor(model => model.TenHoa)
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <span>Mô Tả: </span>
+                @Html.DisplayFor(model => model.MoTaHoa)
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <span>Giá Bán: </span>
+                @Html.DisplayFor(model => model.GiaBan)
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <span>Số Lượng Tồn Kho: </span>
+                @Html.DisplayFor(model => model.SoLuongTonKho)
+
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <span>Mã Loại Hoa: </span>
+                @Html.DisplayFor(model => model.MaLoaiHoa)
+
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <span>Mã Màu: </span>
+                @Html.DisplayFor(model => model.MaMau)
+
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <span>Ảnh: </span>
+                @Html.DisplayFor(model => model.AnhHoa)
+
+            </p>
+        </div>
+
+    </div>
+
+@using (Html.BeginForm("DeleteConfirmed_SP", "Admin", new { id = Model.MaHoa }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+<div class="form-actions no-color">
+    <input type="submit" value="Delete" class="btn btn-danger" /> |
+    @Html.ActionLink("Back to List", "QL_SanPham", "Admin")
+</div>
+    }
+</div>

@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div style="background-color: aquamarine; padding: 2px 0 30px 0">
+            <div class="container">
+                <div class="row">
+                    @if (Session["Quyen"] != null && Session["Quyen"].ToString() == "Admin")
+                    {
+                        <div class="col-2">
+                            <img height="40px" src="~/Images/logo.jpg" />
+                            <a class="navbar-brand" href="/FlowerStore">FLOWER STORE</a>
+                        </div>
+
+                        <div class="col-2">
+                            @Html.ActionLink("Quản lý đơn đặt hàng", "QL_DonDatHang", "Admin", null, new { @class = "nav-link" })
+
+                        </div>
+                        <div class="col-2">
+                            @Html.ActionLink("Quản lý sản phẩm", "QL_SanPham", "Admin", null, new { @class = "nav-link" })
+                        </div>
+                        <div class="col-2">
+                            @Html.ActionLink("Quản lý khách hàng", "QL_KhachHang", "Admin", null, new { @class = "nav-link" })
+                        </div>
+                        <div class="col-2">
+                            @Html.ActionLink("Quản lý tài khoản", "QL_TaiKhoan", "Admin", null, new { @class = "nav-link" })
+                        </div>
+                        <div class="col-2">
+                            @Html.ActionLink("Đăng xuất", "DangXuat", "NguoiDung", null, new { @class = "nav-link" })
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-8">
+                            <img height="40px" src="~/Images/logo.jpg" />
+                            <a class="navbar-brand" href="/FlowerStore">FLOWER STORE</a>
+                        </div>
+                    }
+                    @if (Session["Quyen"] == null)
+                    {
+                        <div class="col-1">
+                            @Html.ActionLink("Đăng ký", "DangKy", "NguoiDung", null, new { @class = "nav-link" })
+
+                        </div>
+
+                        <div class="col-1">
+                            @Html.ActionLink("Đăng nhập", "DangNhap", "NguoiDung", null, new { @class = "nav-link" })
+                        </div>
+                    }
+
+                    @if (Session["Quyen"] != null && Session["Quyen"].ToString() == "User")
+                    {
+                        <div class="col-2">
+                            @Html.ActionLink("Đăng xuất", "DangXuat", "NguoiDung", null, new { @class = "nav-link" })
+                        </div>
+                        <div class="col-2">
+                            @Html.Action("GioMuaHangPartial", "GioMuaHang", new { @class = "nav-link" })
+                        </div>
+                    }
+                </div>
+                </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Sidebar -->
+                <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                        @Html.Action("LoaiHoa", "FlowerStore", null)
+                    </div>
+                    <div class="sidebar-sticky">
+                        @Html.Action("MauSac", "FlowerStore", null)
+                    </div>
+                </nav>
+
+                <!-- Book Cards -->
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

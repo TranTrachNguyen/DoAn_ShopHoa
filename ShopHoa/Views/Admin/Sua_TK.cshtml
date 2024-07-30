@@ -1,0 +1,35 @@
+﻿@model ShopHoa.Models.DangKy
+
+@{
+    ViewBag.Title = "Sua_TK";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<a href="@Url.Action("QL_TaiKhoan","Admin")">Trang QL_TK</a>
+<form action="Sua?ma&tendn&mk&vaitro" method="post">
+    <div class="mb-3">
+
+        <input type="hidden" class="form-control" name="ma" value="@Model.MaDangKy">
+
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Tài Khoản</label>
+        <input type="text" class="form-control" name="tendn">
+
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Mật Khẩu</label>
+        <input type="text" class="form-control" name="mk">
+
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Vai Trò</label>
+        <select name="vaitro">
+            <option>Admin</option>
+            <option>User</option>
+        </select>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

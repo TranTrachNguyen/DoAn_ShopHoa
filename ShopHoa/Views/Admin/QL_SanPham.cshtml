@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ShopHoa.Models.Hoa>
+
+@{
+    ViewBag.Title = "QL_SanPham";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<style>
+    .thaotac a {
+        text-decoration: none;
+        color: white;
+    }
+</style>
+
+<h2>QUẢN LÝ SẢN PHẨM</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create_SP")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <p>Tên hoa</p>
+        </th>
+        <th>
+            <p>Mô tả</p>
+        </th>
+        <th>
+            <p>Giá bán</p>
+        </th>
+        <th>
+            <p>Số lượng tồn kho</p>
+        </th>
+        <th>
+            <p>Mã loại hoa</p>
+        </th>
+        <th>
+            <p>Mã màu</p>
+        </th>        
+        <th>
+            <p>Ảnh</p>
+        </th>
+        <th>
+            <p>Thao Tác</p>
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenHoa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MoTaHoa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiaBan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoLuongTonKho)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaLoaiHoa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaMau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnhHoa)
+        </td>
+        <td>
+            <button type="button" class="btn btn-primary thaotac">@Html.ActionLink("Sửa", "Edit_SP", new { id = item.MaHoa })</button>
+
+            <button type="button" class="btn btn-info thaotac">@Html.ActionLink("Chi tiết", "Details_SP", new { id = item.MaHoa })</button>
+
+            <button type="button" class="btn btn-danger thaotac" style="margin-top: 5px">@Html.ActionLink("Xóa", "Delete_SP", new { id = item.MaHoa })</button>
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    form {
+        border: 3px solid #f1f1f1;
+    }
+
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #04AA6D;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+    .cancelbtn {
+        width: auto;
+        padding: 10px 18px;
+        background-color: #f44336;
+    }
+
+    .imgcontainer {
+        text-align: center;
+        margin: 24px 0 12px 0;
+    }
+
+    img.avatar {
+        width: 40%;
+        border-radius: 50%;
+    }
+
+    .container {
+        padding: 16px;
+    }
+
+    span.psw {
+        float: right;
+        padding-top: 16px;
+    }
+    }
+</style>
+<h2>Đăng Ký</h2>
+
+<form action="/NguoiDung/DangKy" method="post">
+    <div class="imgcontainer">
+        <img style="height: 190px; width: 190px" src="~/Images/dangky.jpg" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+        <label for="uname"><b>Họ tên khách hàng</b></label>
+        @Html.TextBox("HoTenKH")
+        <p style="color: red">@ViewData["Loi1"]</p>
+
+
+        <label for="psw"><b>Tên đăng nhập</b></label>
+        @Html.TextBox("TenDN")
+        <p style="color: red">
+            @ViewData["Loi2"]
+        </p>
+
+        <label for="psw"><b>Mật khẩu</b></label>
+        @Html.Password("MatKhau")
+        <p style="color: red">
+            @ViewData["Loi3"]
+        </p>
+
+        <label for="psw"><b>Nhập lại mật khẩu</b></label>
+        @Html.Password("MatKhauNhapLai")
+        <p style="color: red">
+            @ViewData["Loi4"]
+        </p>
+
+        <label for="psw"><b>Email</b></label>
+        @Html.TextBox("Email")
+        <p style="color: red">
+            @ViewData["Loi5"]
+        </p>
+
+        <label for="psw"><b>Điện thoại</b></label>
+        @Html.TextBox("DienThoai")
+        <p style="color: red">
+            @ViewData["Loi6"]
+        </p>
+
+        <label for="psw"><b>Địa Chỉ</b></label>
+        @Html.TextBox("DiaChi")
+        <p style="color: red">
+            @ViewData["Loi7"]
+        </p>
+        <button style="border-radius: 5px" type="submit" name="Đăng Ký">Đăng Ký</button>
+    </div>
+    <p style="color: red">@ViewBag.ThongBao</p>
+    <div class="container" style="background-color:#f1f1f1">
+        <a style="text-decoration: none; color: white; border-radius: 5px" href="/FlowerStore"<button type="button" class="cancelbtn">Cancel</button></a>
+    </div>
+</form>
+

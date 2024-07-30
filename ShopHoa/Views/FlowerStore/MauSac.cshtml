@@ -1,0 +1,14 @@
+﻿@model IEnumerable<ShopHoa.Models.MauSac>
+
+
+<p class="lead"> Màu sắc hoa</p>
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <a href="@Url.Action("SPTheoMauSac","FlowerStore",new {id=item.MaMau})" class="list-group-item">
+            @item.TenMau
+        </a>
+    }
+</div>
+
+

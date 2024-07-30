@@ -1,0 +1,82 @@
+﻿@model ShopHoa.Models.Hoa
+
+@{
+    ViewBag.Title = "Create_SP";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Thêm sản phẩm</h2>
+
+@using (Html.BeginForm("ThemSPThanhCong", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <p>Tên hoa: </p>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TenHoa, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TenHoa, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p>Mô tả hoa: </p>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MoTaHoa, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MoTaHoa, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p>Giá bán: </p>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p>Số lượng tồn kho: </p>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SoLuongTonKho, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SoLuongTonKho, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p>Loại hoa: </p>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.MaLoaiHoa, ViewBag.LoaiHoaList as SelectList, "-- Chọn loại hoa --", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.MaLoaiHoa, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p>Màu sắc: </p>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.MaMau, ViewBag.MauList as SelectList, "-- Chọn màu sắc --", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.MaMau, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p>Ảnh hoa: </p>
+        <div class="col-md-10">
+            <input type="file" name="file" />
+            @Html.ValidationMessageFor(model => model.AnhHoa, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "QL_SanPham", "Admin")
+</div>

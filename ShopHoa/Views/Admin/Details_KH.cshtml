@@ -1,0 +1,24 @@
+﻿@model ShopHoa.Models.KhachHang
+
+@{
+    ViewBag.Title = "Details_KH";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+
+<div>
+    <h2>QUẢN LÝ KHÁCH HÀNG</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <p><span style="font-weight: 700">Mã đăng ký:</span> @Html.DisplayFor(model => model.MaDangKy)</p>
+        <p><span style="font-weight: 700">Tên khách hàng:</span> @Html.DisplayFor(model => model.TenKhachHang)</p>
+        <p><span style="font-weight: 700">Địa chỉ:</span> @Html.DisplayFor(model => model.DiaChi)</p>
+        <p><span style="font-weight: 700">Số điện thoại:</span> @Html.DisplayFor(model => model.SoDienThoai)</p>
+        <p><span style="font-weight: 700">Email:</span> @Html.DisplayFor(model => model.Email)</p>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit_KH", new { id = Model.MaKhachHang }) |
+    @Html.ActionLink("Back to List", "QL_KhachHang")
+</p>

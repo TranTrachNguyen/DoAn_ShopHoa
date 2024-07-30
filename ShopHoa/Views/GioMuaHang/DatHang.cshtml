@@ -1,0 +1,127 @@
+﻿@using ShopHoa.Models
+@using System.Data.SqlClient;
+@model List<GioMuaHang>
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<style>
+    .product-image {
+        max-width: 100px;
+        max-height: 100px;
+    }
+
+    .total-row {
+        font-weight: bold;
+        text-align: right;
+        color: red;
+    }
+    .form-container {
+        width: 1200px;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        margin-top: 5px;    
+    }
+    .ttdathang span{
+        font-weight:700;
+    }
+</style>
+<h2 style="text-align: center">THÔNG TIN SẢN PHẨM</h2>
+<div class="row" style="text-align: center; margin-left: 50px;">
+    <div class="col-1">
+        Mã Hoa
+    </div>
+    <div class="col-1">
+        Ảnh
+    </div>
+    <div class="col-2">
+        Tên Hoa
+    </div>
+    <div class="col-2">
+        Số Lượng
+    </div>
+    <div class="col-1">
+        Đơn Giá
+    </div>
+    <div class="col-1">
+        Tổng Tiền
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="row form-container" style="text-align: center">
+            <div class="col-1">
+                @item.MaHoa
+            </div>
+            <div class="col-1">
+                <img style="height: 100px" src="~/Images/@item.AnhHoa" />
+            </div>
+            <div class="col-2">
+                @item.TenHoa
+            </div>
+            <div class="col-2">
+                @item.SoLuong
+            </div>
+            <div class="col-1" style="margin-left: 17px">
+                @String.Format("{0:0,0}", item.GiaBan),000
+            </div>
+            <div class="col-1">
+                @String.Format("{0:0,0}", item.ThanhTien),000
+            </div>
+
+        </div>
+    }
+
+    <h2 style="text-align: center; margin-top: 20px">THÔNG TIN ĐẶT HÀNG</h2>
+
+    @{
+        DangKy dk = (DangKy)Session["TenDangNhap"];
+        KhachHang kh = null;
+
+        string connectionString = @"Data Source=MSI\SQLEXPRESS;Initial Catalog=ShopHoa;Integrated Security=True";
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+
+            string query = "SELECT * FROM KhachHang WHERE MaDangKy = @MaDangKy";
+            using (SqlCommand cmd = new SqlCommand(query, connection))
+            {
+                cmd.Parameters.AddWithValue("@MaDangKy", dk.MaDangKy);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        kh = new KhachHang();
+                        kh.TenKhachHang = reader["TenKhachHang"].ToString();
+                        kh.MaKhachHang = int.Parse(reader["MaKhachHang"].ToString());
+                        kh.DiaChi = reader["DiaChi"].ToString();
+                        kh.SoDienThoai = reader["SoDienThoai"].ToString();
+                    }
+                }
+            }
+        }
+    }
+
+    @if (kh != null)
+    {  
+        <form action="/GioMuaHang/XacNhanDonHang" method="post" class="ttdathang">
+            <p><span>Họ tên khách hàng:</span> @kh.TenKhachHang</p>
+            <p><span>Địa chỉ:</span> @kh.DiaChi</p>
+            <p><span>Điện thoại:</span> @kh.SoDienThoai</p>
+            <p><span>Ngày đặt hàng:</span> @DateTime.Now.ToString("dd/MM/yyyy")</p>
+            <p><span>Tổng tiền:</span> @ViewBag.TongTien.ToString("N0"),000 VNĐ</p>
+
+            <input type="hidden" name="TenKhachHang" value="@kh.TenKhachHang" />
+            <input type="hidden" name="MaKhachHang" value="@kh.MaKhachHang" />
+            <input type="hidden" name="DiaChiGiaoHang" value="@kh.DiaChi" />
+            <input type="hidden" name="SoDienThoai" value="@kh.SoDienThoai" />
+            <input type="hidden" name="SoLuong" value="@ViewBag.TongSL" />
+            <input type="hidden" name="NgayDatHang" value="@DateTime.Now.ToString("dd/MM/yyyy")" />
+            <input type="hidden" name="TrangThaiDonHang" value="Đặt Thành Công" />
+            <input type="hidden" name="TongGiaTriDonHang" value="@ViewBag.TongTien" />
+            <input class="btn btn-success" type="submit" value="Đồng ý đặt hàng" />
+        </form> 
+    }

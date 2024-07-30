@@ -1,0 +1,73 @@
+﻿@model ShopHoa.Models.Hoa
+
+@{
+    ViewBag.Title = "Details_SP";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<style>
+    .detail span {
+        font-weight: 700;
+    }
+    .thaotac a {
+        text-decoration: none;
+        color: white;
+    }
+</style>
+<div class="container">
+
+    <div class="row detail">
+        <hr />
+        <div class="col-3">
+            <p>
+                <span>Tên Hoa: </span>
+                @Html.DisplayFor(model => model.TenHoa)
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <span>Mô Tả: </span>
+                @Html.DisplayFor(model => model.MoTaHoa)
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <span>Giá Bán: </span>
+                @Html.DisplayFor(model => model.GiaBan)
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <span>Số Lượng Tồn Kho: </span>
+                @Html.DisplayFor(model => model.SoLuongTonKho)
+
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <span>Mã Loại Hoa: </span>
+                @Html.DisplayFor(model => model.MaLoaiHoa)
+
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <span>Mã Màu: </span>
+                @Html.DisplayFor(model => model.MaMau)
+
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <h6>Ảnh: </h6>
+                <img style="height: 200px; width: 200px" src="~/Images/@Html.DisplayFor(model => model.AnhHoa)"/>
+
+            </p>
+        </div>
+
+    </div>
+    <p>
+        <button type="button" class="btn btn-warning thaotac">@Html.ActionLink("Edit", "Edit_SP", new { id = Model.MaHoa })</button>
+         |
+        @Html.ActionLink("Back to List", "QL_SanPham", "Admin")
+    </p>

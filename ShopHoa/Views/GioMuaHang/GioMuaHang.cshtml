@@ -1,0 +1,126 @@
+﻿@using ShopHoa.Models
+@model List<GioMuaHang>
+@{
+    ViewBag.Title = "GioMuaHang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<style>
+    table {
+        width: 80%;
+        margin: auto;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+    }
+
+    img {
+        max-width: 50px;
+        max-height: 50px;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    .total-row {
+        font-weight: bold;
+        text-align: right;
+        color: red;
+    }
+    .form-container {
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .thaotac a{
+        text-decoration: none;
+        color: white;
+    }
+</style>
+
+<h2>THÔNG TIN GIỎ HÀNG</h2>
+<div class="row" style="text-align: center">
+    <div class="col-1">
+        Mã Hoa
+    </div>
+    <div class="col-1">
+        Ảnh
+    </div>
+    <div class="col-2">
+        Tên Hoa
+    </div>
+    <div class="col-2">
+        Số Lượng
+    </div>
+    <div class="col-1">
+        Đơn Giá
+    </div>
+    <div class="col-1">
+        Tổng Tiền
+    </div>
+    <div class="col-2">
+        Thao Tác
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="row form-container" style="text-align: center">
+            <div class="col-1">
+                @item.MaHoa
+            </div>
+            <div class="col-1">
+                <img src="~/Images/@item.AnhHoa" />
+            </div>
+            <div class="col-2">
+                @item.TenHoa
+            </div>
+            <div class="col-2">
+                @using (Html.BeginForm("CapNhatGioMuaHang", "GioMuaHang", new { maSP = item.MaHoa }))
+                {
+                    <input type="number" min="1" name="txtSoLuong" value="@item.SoLuong" style="width: 70px" />
+                    <input type="submit" value="Cập nhật" />
+                }
+            </div>
+            <div class="col-1" style="margin-left: 17px">
+                @String.Format("{0:0,0}", item.GiaBan),000
+            </div>
+            <div class="col-1">
+                @String.Format("{0:0,0}", item.ThanhTien),000
+            </div>
+            <div class="col-1">
+                <button type="button" class="btn btn-info thaotac">@Html.ActionLink("Chi tiết", "Details", "FlowerStore", new { id = item.MaHoa }, null)</button>
+                
+            </div>
+            <div class="col-1">
+                <button type="button" class="btn btn-danger thaotac">@Html.ActionLink("Xóa", "XoaGioMuaHang", new { maSP = item.MaHoa })</button>
+                
+            </div>
+
+        </div>
+     }
+            <div class="row">
+                <div class="col-4">
+                    Tổng Số Lượng Hoa: @ViewBag.TongSoLuong
+                </div>
+                <div class="col-4">
+                    Tổng tiền: @String.Format("{0:0,0}", ViewBag.TongTien),000 VNĐ
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-danger thaotac">@Html.ActionLink("Xóa Giỏ Mua Hàng", "XoaTatCaGioHang")</button>
+                    
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-success thaotac">@Html.ActionLink("ĐẶT HÀNG", "DatHang", "GioMuaHang")</button>
+                    
+                </div>
+            </div>
+
+            

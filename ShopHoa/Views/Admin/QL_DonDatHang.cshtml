@@ -1,0 +1,125 @@
+﻿@model IEnumerable<ShopHoa.Models.DonDatHang>
+
+@{
+    ViewBag.Title = "QL_DonDatHang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<style>
+    table {
+        width: 80%;
+        margin: auto;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+    }
+
+    img {
+        max-width: 50px;
+        max-height: 50px;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    .total-row {
+        font-weight: bold;
+        text-align: right;
+        color: red;
+    }
+
+    .form-container {
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .thaotac a {
+        text-decoration: none;
+        color: white;
+    }
+    .thaotac {
+        width: 70px;
+    }
+    .title{
+        font-weight:700;
+    }
+</style>
+<h2>Đơn Đặt Hàng</h2>
+
+<div class="row title" style="text-align: center">
+    <div class="col-1">
+        Mã Khách Hàng
+    </div>
+    <div class="col-1">
+        Tên Khách Hàng
+    </div>
+    <div class="col-1">
+        Ngày Đặt Hàng
+    </div>
+    <div class="col-2">
+        Địa Chỉ
+    </div>
+    <div class="col-1">
+        Số Điện Thoại
+    </div>
+    <div class="col-1">
+        Số Lượng
+    </div>
+    <div class="col-1">
+        Trạng Thái Đơn Hàng
+    </div>
+    <div class="col-1">
+        Tổng Giá Trị Đơn Hàng
+    </div>
+    <div class="col-2">
+        Thao Tác
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="row form-container" style="text-align: center">
+            <div class="col-1">
+                @Html.DisplayFor(modelItem => item.MaKhachHang)
+            </div>
+            <div class="col-1">
+                @Html.DisplayFor(modelItem => item.TenKhachHang)
+            </div>
+            <div class="col-1">
+                @Html.DisplayFor(modelItem => item.NgayDatHang)
+            </div>
+            <div class="col-2">
+                @Html.DisplayFor(modelItem => item.DiaChiGiaoHang)
+            </div>
+            <div class="col-1" style="margin-left: 17px">
+                @Html.DisplayFor(modelItem => item.SoDienThoai)
+            </div>
+            <div class="col-1">
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </div>
+            <div class="col-1">
+                @Html.DisplayFor(modelItem => item.TrangThaiDonHang)
+            </div>
+            <div class="col-1">
+                @Html.DisplayFor(modelItem => item.TongGiaTriDonHang)
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-primary thaotac">@Html.ActionLink("Edit", "Edit_DH", new { id = item.MaDonHang })</button>
+         
+                <button type="button" class="btn btn-info thaotac">@Html.ActionLink("Details", "Details_DH", new { id = item.MaDonHang })</button>
+          
+                <button type="button" class="btn btn-danger thaotac" style="margin-top: 5px">@Html.ActionLink("Delete", "Delete_DH", new { id = item.MaDonHang })</button>
+                
+            </div>
+
+        </div>
+    }
+
+

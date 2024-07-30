@@ -1,0 +1,30 @@
+﻿@model ShopHoa.Models.KhachHang
+
+@{
+    ViewBag.Title = "Delete_KH";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>XÓA KHÁCH HÀNG</h2>
+
+<h3>Bạn có chắc chắn muốn xóa?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <p><span style="font-weight: 700">Mã đăng ký:</span> @Html.DisplayFor(model => model.MaDangKy)</p>
+        <p><span style="font-weight: 700">Tên khách hàng:</span> @Html.DisplayFor(model => model.TenKhachHang)</p>
+        <p><span style="font-weight: 700">Địa chỉ:</span> @Html.DisplayFor(model => model.DiaChi)</p>
+        <p><span style="font-weight: 700">Số điện thoại:</span> @Html.DisplayFor(model => model.SoDienThoai)</p>
+        <p><span style="font-weight: 700">Email:</span> @Html.DisplayFor(model => model.Email)</p>
+    </dl>
+
+    @using (Html.BeginForm("DeleteConfirmed_KH", "Admin", new { id = Model.MaKhachHang }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <p>
+            <input type="submit" value="Confirm Delete" class="btn btn-danger" />
+            @Html.ActionLink("Cancel", "QL_KhachHang", "Admin", null, new { @class = "btn btn-secondary" })
+        </p>
+    }
+</div>

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ShopHoa.Models.Hoa>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<h3 style="text-align: center; color: red;">CÁC LOẠI HOA</h3>
+
+<div class="row">
+    @foreach (var hoa in Model)
+    {
+        <div class="card" style="width: 18rem; margin: 0 20px 20px 0; padding: 0">
+            <img src="~/Images/@hoa.AnhHoa" class="card-img-top" alt="@hoa.TenHoa" style="height: 290px; width: 100%; border-radius: 7px;">
+            <div class="card-body">
+                <h5 class="card-title">@hoa.TenHoa</h5>
+                <p class="card-text">@hoa.MoTaHoa</p>
+                <div class="row">
+                    <div class="col-6">
+                        <a style="font-size: 14px; color:aliceblue" href="@Url.Action("Details", "FlowerStore", new { id = hoa.MaHoa})" class="btn btn-primary">Xem chi tiết</a>
+                    </div>
+                    <div class="col-6">
+                        <p style="font-size: 14px">@hoa.GiaBan <span>VNĐ</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    }
+</div>

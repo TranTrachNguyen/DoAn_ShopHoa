@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ShopHoa.Models.DangKy>
+
+@{
+    ViewBag.Title = "QL_TaiKhoan";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>QUẢN LÝ TÀI KHOẢN</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Tài Khoản</th>
+            <th scope="col">Mật Khẩu</th>
+            <th scope="col">Vai Trò</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@Html.DisplayFor(modelItem => item.TenDangNhap)</td>
+                <td>@Html.DisplayFor(modelItem => item.MatKhau)</td>
+                <td>@Html.DisplayFor(modelItem => item.VaiTroNguoiDung)</td>
+                <td>
+                    <a href="@Url.Action("XoaTaiKhoan", "Admin", new {id=@item.MaDangKy })">Xóa
+                    <a href="@Url.Action("Sua_TK", "Admin", new { id=@item.MaDangKy})">Sửa</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

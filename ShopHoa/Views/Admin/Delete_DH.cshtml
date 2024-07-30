@@ -1,0 +1,83 @@
+﻿@model ShopHoa.Models.DonDatHang
+
+@{
+    ViewBag.Title = "Delete_DH";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<style>
+    .detail span {
+        font-weight: 700;
+    }
+</style>
+<div class="container">
+    <h2>Bạn có Chắc chắn muốn xóa?</h2>
+
+    <div class="row detail">
+        <hr />
+        <div class="col-3">
+            <p>
+                <span>Mã khách hàng: </span>
+                @Html.DisplayFor(model => model.MaKhachHang)
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <span>Tên khách hàng: </span>
+                @Html.DisplayFor(model => model.TenKhachHang)
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <span>Ngày đặt hàng: </span>
+                @Html.DisplayFor(model => model.NgayDatHang)
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <span>Địa chỉ giao hàng: </span>
+                @Html.DisplayFor(model => model.DiaChiGiaoHang)
+
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <span>Số điện thoại: </span>
+                @Html.DisplayFor(model => model.SoDienThoai)
+
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <span>Số lượng: </span>
+                @Html.DisplayFor(model => model.SoLuong)
+
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <span>Trạng thái đơn hàng: </span>
+                @Html.DisplayFor(model => model.TrangThaiDonHang)
+
+            </p>
+        </div>
+        <div class="col-3">
+            <p>
+                <span>Tổng giá trị đơn hàng: </span>
+                @Html.DisplayFor(model => model.TongGiaTriDonHang)
+
+            </p>
+        </div>
+
+    </div>
+
+    @using (Html.BeginForm("DeleteConfirmed", "Admin", new { id = Model.MaDonHang }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <p>
+            <input type="submit" value="Confirm Delete" class="btn btn-danger" />
+            @Html.ActionLink("Cancel", "QL_DonDatHang", "Admin", null, new { @class = "btn btn-secondary" })
+        </p>
+    }
+</div>
